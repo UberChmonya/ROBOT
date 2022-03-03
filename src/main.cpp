@@ -2,8 +2,9 @@
 
 
 void setup() {
+  digitalWrite();
+  Encoder encoder(1, 4);
 
-  // put your setup code here, to run once:
 }
 
 void loop() {
