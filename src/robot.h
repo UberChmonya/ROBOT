@@ -2,32 +2,30 @@
 class Encoder{
     private:
     bool trig;
-    byte pin1, pin2;
+    int8_t pin1, pin2;
 
     public:
     int count;
     
-    Encoder (byte _pin1, byte _pin2);
+    Encoder (uint8_t _pin1, uint8_t _pin2);
     void check();
 };
 
 class Motor{
     private:
-    int speed, 
-        wheelDiametr,
-        tickPerRotation;
-
-    byte pinPWM, 
-            pinDirFoward, 
-            pinDirBackward;
-
-    bool dir;
+    uint8_t pinPWM, 
+         pinDirFoward, 
+         pinDirBackward;
+         
     Encoder encoder;
 
     public:
-    Motor(byte _pinPWM, byte _pinDirFoward,
-          byte _pinDirBackward, int _wheelDiametr,
-          int _tickPerRotation, Encoder &_encoder);
+    int tickPerRotation, speed;
+    bool dir;
 
-    void move(int8_t speed); //simple move
+    Motor (uint8_t _pinPWM, uint8_t _pinDirFoward,
+          uint8_t _pinDirBackward, 
+          int _tickPerRotation, Encoder &enc);
+
+    void setSpeed(uint8_t speed, uint8_t dir); //simple move
 };

@@ -1,13 +1,21 @@
-#include "main.h"
-
+#include "robot.h"
+#include <Arduino.h>
 
 void setup() {
-  digitalWrite();
-  Encoder encoder(1, 4);
-
+  
+  Serial.begin(115200);
 }
 
-void loop() {
+Encoder Ex =  Encoder(A1, A0);
+Encoder Ey =  Encoder(A2, A3);
 
-  // put your main code here, to run repeatedly:
+Motor Mx = Motor(8, 7, 6, 60, Ex);
+Motor My = Motor(11, 10, 9, 60, Ey);
+
+
+void loop() {
+  Ex.check();
+  Ey.check();
+  Serial.println(Ex.count);
+  Serial.println(Ey.count);
 }
