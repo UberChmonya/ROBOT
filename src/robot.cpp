@@ -1,8 +1,17 @@
 #include "robot.h"
+
 Encoder::Encoder(uint8_t _pin1, uint8_t _pin2)
 {
   pin1 = _pin1;
   pin2 = _pin2;
+  trig = 0;
+  count = 0;
+}
+
+Encoder::Encoder()
+{
+  pin1 = 5;
+  pin2 = 6;
   trig = 0;
   count = 0;
 }
@@ -28,11 +37,16 @@ Motor::Motor(uint8_t _pinPWM, uint8_t _pinDirFoward,
              uint8_t _pinDirBackward,
              int _tickPerRotation, Encoder &enc)
 {
-  uint8_t pinPWM = _pinPWM;
-  uint8_t pinDirFoward = _pinDirFoward;
-  uint8_t pinDirBackward = _pinDirBackward;
-  int     tickPerRotation = _tickPerRotation;
-  Encoder encoder = enc;
+    pinPWM = _pinPWM;
+    pinDirFoward = _pinDirFoward;
+    pinDirBackward = _pinDirBackward;
+    tickPerRotation = _tickPerRotation;
+    encoder = enc;
+}
+
+void Motor::SetEncoder(Encoder &enc)
+{
+encoder = enc;
 }
 
 void Motor::setSpeed(uint8_t speed, uint8_t dir)

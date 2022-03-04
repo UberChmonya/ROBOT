@@ -6,7 +6,7 @@ class Encoder{
 
     public:
     int count;
-    
+    Encoder ();
     Encoder (uint8_t _pin1, uint8_t _pin2);
     void check();
 };
@@ -25,7 +25,8 @@ class Motor{
 
     Motor (uint8_t _pinPWM, uint8_t _pinDirFoward,
           uint8_t _pinDirBackward, 
-          int _tickPerRotation, Encoder &enc);
+          int _tickPerRotation, Encoder &Enc);
 
-    void setSpeed(uint8_t speed, uint8_t dir); //simple move
+    void setSpeed(uint8_t speed, uint8_t dir);
+    void SetEncoder(Encoder &enc);
 };
