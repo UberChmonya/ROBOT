@@ -9,5 +9,5 @@ void setup() {
 
 void loop() {
   Serial.print (motorL.encoder.count);
-
+  Serial.print (motorR.encoder.count);
 }

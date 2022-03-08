@@ -14,7 +14,7 @@ class Motor{
     int16_t speed;
     bool dir;
     
-    Motor();
+    Motor(); // dont use!!!!
     Motor (uint8_t _pinPWM, uint8_t _pinDirFoward,
           uint8_t _pinDirBackward, int16_t _tickPerRotation);
 

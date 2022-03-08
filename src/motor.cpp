@@ -1,13 +1,6 @@
 #include "motor.h"
 
-Motor::Motor()
-{
-  pinPWM = 1;
-  pinDirFoward = 1;
-  pinDirBackward = 1;
-  tickPerRotation = 1;
-
-}
+Motor::Motor(){} // dont use!!!!
 
 Motor::Motor(uint8_t _pinPWM, uint8_t _pinDirFoward,
              uint8_t _pinDirBackward,

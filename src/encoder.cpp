@@ -1,11 +1,6 @@
 #include "encoder.h"
-Encoder::Encoder() // dont use!!!!
-{
-  pin1 = 0;
-  pin2 = 0;
-  trig = 0;
-  count = 0;
-}
+Encoder::Encoder(){} // dont use!!!!
+
 
 Encoder::Encoder(uint8_t _pin1, uint8_t _pin2)
 {
@@ -14,8 +9,6 @@ Encoder::Encoder(uint8_t _pin1, uint8_t _pin2)
   trig = 0;
   count = 0;
 }
-
-
 
 void Encoder::check()
 {
