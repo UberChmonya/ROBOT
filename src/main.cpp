@@ -1,5 +1,4 @@
-#include "robot.h"
-#include <Arduino.h>
+#include "main.h"
 
 void setup() {
   
@@ -16,18 +15,5 @@ Motor My = Motor(3, 2, 4, 60, Ey);
 void loop() {
   Ex.check();
   Ey.check();
-  if (Ex.count< 500)
-  {
-    Mx.setSpeed(50,0);
-  } 
-  else Mx.setSpeed(0,0);
-    if (Ey.count< 500)
-  {
-    My.setSpeed(50,0);
-  } 
-  else My.setSpeed(0,0);
- // Serial.print("x is ");
-  Serial.println(Ex.count);
-  //Serial.print("y is ");
-  //Serial.println(Ey.count);
+
 }

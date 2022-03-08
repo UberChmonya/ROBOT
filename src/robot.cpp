@@ -1,65 +1,35 @@
-#include "robot.h"
+#include<robot.h>
 
-Encoder::Encoder(uint8_t _pin1, uint8_t _pin2)
+Robot::Robot(uint16_t _robotDiametr,uint16_t _wheelDiametr,
+         Motor &_motorL, Motor &_motorR)
+         {
+            uint16_t robotDiametr = _robotDiametr;
+            uint16_t wheelDiametr = _wheelDiametr;
+            Motor motorL = _motorL;
+            Motor motorR = _motorR;
+            roundWheel = PI * wheelDiametr;
+            roundRobot = PI * robotDiametr;
+            gradusWheel = 360 / roundRobot / roundWheel;
+         };
+
+void Robot::check()
 {
-  pin1 = _pin1;
-  pin2 = _pin2;
-  trig = 0;
-  count = 0;
-}
+    motorL.encoder.check();
+    motorR.encoder.check();
+};
 
-Encoder::Encoder()
-{
-  pin1 = 5;
-  pin2 = 6;
-  trig = 0;
-  count = 0;
-}
+void Robot::setRotate(int16_t angle)
+{   
+    uint16_t startL = motorL.encoder.count;
+    uint16_t startR = motorR.encoder.count;
+    uint16_t gradusL = 0;
+    uint16_t gradusR = 0;
+    while(true)
+    {
+        check();
+        gradusL = gradusWheel * (motorL.encoder.count - startL/ motorL.tickPerRotation);
+        gradusR = gradusWheel * (motorR.encoder.count - startR/ motorR.tickPerRotation);
 
-void Encoder::check()
-{
-  if ((digitalRead(pin1) == 1) & (trig == 0))
-  {
-    trig = 1;
-    if (digitalRead(pin2) == 1)
-      count++;
-    else
-      count--;
-  }
+    }
 
-  if ((digitalRead(pin1) == 0) & (trig == 1))
-  {
-    trig = 0;
-  }
-}
-
-Motor::Motor(uint8_t _pinPWM, uint8_t _pinDirFoward,
-             uint8_t _pinDirBackward,
-             int _tickPerRotation, Encoder &enc)
-{
-    pinPWM = _pinPWM;
-    pinDirFoward = _pinDirFoward;
-    pinDirBackward = _pinDirBackward;
-    tickPerRotation = _tickPerRotation;
-    encoder = enc;
-}
-
-void Motor::SetEncoder(Encoder &enc)
-{
-encoder = enc;
-}
-
-void Motor::setSpeed(uint8_t speed, uint8_t dir)
-{
-  analogWrite(pinPWM, speed);
-  if (dir == 0)
-  {
-    digitalWrite(pinDirBackward, 0);
-    digitalWrite(pinDirFoward, 1);
-  }
-  else
-  {
-    digitalWrite(pinDirBackward, 1);
-    digitalWrite(pinDirFoward, 0);
-  }
-}
+};

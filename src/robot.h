@@ -1,32 +1,21 @@
 #include <Arduino.h>
-class Encoder{
+#include "motor.h"
+class Robot
+{
     private:
-    bool trig;
-    int8_t pin1, pin2;
+        uint16_t robotDiametr, wheelDiametr;
+        int16_t currentAngle, targetAngle,
+                currentSpeed, targetSpeed,
+                roundWheel, roundRobot,
+                gradusWheel;
+
+        Motor motorL, motorR;
 
     public:
-    int count;
-    Encoder ();
-    Encoder (uint8_t _pin1, uint8_t _pin2);
-    void check();
-};
+        Robot(uint16_t robotDiametr,uint16_t wheelDiametr,
+         Motor &motorL, Motor &motorR);
 
-class Motor{
-    private:
-    uint8_t pinPWM, 
-         pinDirFoward, 
-         pinDirBackward;
-         
-    Encoder encoder;
-
-    public:
-    int tickPerRotation, speed;
-    bool dir;
-
-    Motor (uint8_t _pinPWM, uint8_t _pinDirFoward,
-          uint8_t _pinDirBackward, 
-          int _tickPerRotation, Encoder &Enc);
-
-    void setSpeed(uint8_t speed, uint8_t dir);
-    void SetEncoder(Encoder &enc);
+        void check(void);
+        void setRotate(int16_t angle);  
+        void setMove(int8_t speed);    // -127 | +127
 };
