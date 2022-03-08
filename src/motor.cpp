@@ -1,23 +1,22 @@
 #include "motor.h"
 
+Motor::Motor()
+{
+  pinPWM = 1;
+  pinDirFoward = 1;
+  pinDirBackward = 1;
+  tickPerRotation = 1;
+
+}
+
 Motor::Motor(uint8_t _pinPWM, uint8_t _pinDirFoward,
              uint8_t _pinDirBackward,
-             int _tickPerRotation, Encoder &enc)
+             int _tickPerRotation)
 {
     pinPWM = _pinPWM;
     pinDirFoward = _pinDirFoward;
     pinDirBackward = _pinDirBackward;
     tickPerRotation = _tickPerRotation;
-    encoder = enc;
-}
-
-Motor::Motor()
-{
-    pinPWM = 0;
-    pinDirFoward = 0;
-    pinDirBackward = 0;
-    tickPerRotation = 0;
-    encoder = Encoder(0, 0);
 }
 
 void Motor::SetEncoder(Encoder &enc)

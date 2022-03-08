@@ -12,10 +12,9 @@ class Robot
         Motor motorL, motorR;
 
     public:
-        Robot(uint16_t robotDiametr,uint16_t wheelDiametr,
-         Motor &motorL, Motor &motorR);
-
+        Robot(uint16_t robotDiametr,uint16_t _wheelDiametr);
+        void setMotor(Motor &_motorL, Motor &_motorR);
         void check(void);
-        void setRotate(int16_t angle);  
-        void setMove(int8_t speed);    // -127 | +127
+        void rotate(int16_t angle);  
+        void move(int8_t speed);    // -127 | +127
 };
