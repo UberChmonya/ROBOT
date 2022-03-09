@@ -26,6 +26,7 @@ void Robot::rotate(int16_t angle)
     uint16_t startR = motorR.encoder.count;
     uint16_t gradusL = 0;
     uint16_t gradusR = 0;
+    
     while(true)
     {
         check();
@@ -33,5 +34,4 @@ void Robot::rotate(int16_t angle)
         gradusR = gradusWheel * (motorR.encoder.count - startR/ motorR.tickPerRotation);
 
     }
-
 }
