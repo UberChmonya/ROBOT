@@ -2,10 +2,11 @@
 #include "Robot.h"
 #include "encoder.h"
 
-Encoder encL =  Encoder(A1, A0);
-Encoder encR =  Encoder(A2, A3);
+Encoder encL =  Encoder(15, 14);
+Encoder encR =  Encoder(16, 17);
 
-Motor motorL = Motor(9, 6, 5, 60);
-Motor motorR = Motor(3, 2, 4, 60);
+Motor motorL = Motor(9, 5, 6, 240);
+Motor motorR = Motor(3, 4, 2, 240);
 
-Robot robot = Robot(300, 50);
+
+Robot robot = Robot(169, 65);
