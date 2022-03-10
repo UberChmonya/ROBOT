@@ -1,3 +1,4 @@
+#pragma once
 #include <Arduino.h>
 #include "motor.h"
 class Robot
@@ -5,10 +6,8 @@ class Robot
     private:
         uint16_t robotDiametr, wheelDiametr;
         int16_t currentAngle, targetAngle,
-                currentSpeed, targetSpeed,
-                roundWheel, roundRobot,
-                gradusWheel;
-
+                currentSpeed, targetSpeed;
+        float gradusWheel;
         Motor motorL, motorR;
 
     public:

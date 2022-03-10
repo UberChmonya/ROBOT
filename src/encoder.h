@@ -1,5 +1,6 @@
+#pragma once
 #include <arduino.h>
-
+#include "fast.h"
 class Encoder{
     private:
     bool trig;

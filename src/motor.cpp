@@ -10,6 +10,9 @@ Motor::Motor(uint8_t _pinPWM, uint8_t _pinDirFoward,
     pinDirFoward = _pinDirFoward;
     pinDirBackward = _pinDirBackward;
     tickPerRotation = _tickPerRotation;
+    pinMode(pinPWM, OUTPUT);
+    pinMode(pinDirFoward, OUTPUT);
+    pinMode(pinDirBackward, OUTPUT);
 }
 
 void Motor::SetEncoder(Encoder &enc)
@@ -30,4 +33,12 @@ void Motor::setSpeed(uint8_t speed, uint8_t dir)
     digitalWrite(pinDirBackward, 1);
     digitalWrite(pinDirFoward, 0);
   }
+}
+
+void Motor::stop()
+{
+  digitalWrite(pinPWM, 0);
+  digitalWrite(pinDirBackward, 0);
+  digitalWrite(pinDirFoward, 0);
+
 }

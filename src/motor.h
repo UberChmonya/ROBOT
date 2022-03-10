@@ -1,3 +1,4 @@
+#pragma once
 #include <Arduino.h>
 #include "encoder.h"
 
@@ -20,5 +21,5 @@ class Motor{
 
     void SetEncoder(Encoder &enc);
     void setSpeed(uint8_t speed, uint8_t dir);
-
+    void stop(void);
 };

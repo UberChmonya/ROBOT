@@ -1,12 +1,9 @@
+
 #include<robot.h>
 
 Robot::Robot(uint16_t _robotDiametr, uint16_t _wheelDiametr)
 {
-    uint16_t robotDiametr = _robotDiametr;
-    uint16_t wheelDiametr = _wheelDiametr;
-    roundWheel = PI * wheelDiametr;
-    roundRobot = PI * robotDiametr;
-    gradusWheel = 360 / roundRobot / roundWheel;
+    float gradusWheel = 360 /_wheelDiametr / _robotDiametr;
 }
 void Robot::setMotor(Motor &_motorL, Motor &_motorR)
 {
@@ -30,8 +27,8 @@ void Robot::rotate(int16_t angle)
     while(true)
     {
         check();
-        gradusL = gradusWheel * (motorL.encoder.count - startL/ motorL.tickPerRotation);
-        gradusR = gradusWheel * (motorR.encoder.count - startR/ motorR.tickPerRotation);
+        gradusL = gradusWheel * ((motorL.encoder.count - startL) / motorL.tickPerRotation);
+        gradusR = gradusWheel * ((motorR.encoder.count - startR) / motorR.tickPerRotation);
 
     }
 }
