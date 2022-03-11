@@ -6,7 +6,7 @@ void setup() {
   robot.setMotor(motorL, motorR);
   Serial.begin(115200);
   robot.setCoef(30, 1, 1);
- // robot.move(100);
+ //robot.move(100);
   robot.rotate(90);
 
 }

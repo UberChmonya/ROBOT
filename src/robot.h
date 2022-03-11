@@ -1,7 +1,7 @@
 #pragma once
 #include <Arduino.h>
 #include "motor.h"
-
+#include "PID.h"
 class Robot
 {
     private:
@@ -23,5 +23,5 @@ class Robot
         void setCoef(float kP,float kI,float kD);
 
         void rotate(int16_t angle);  
-        void move(uint16_t distanse);    
+       // void move(uint16_t distanse);    
 };
