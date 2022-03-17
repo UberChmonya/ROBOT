@@ -1,5 +1,4 @@
 #include "PID.h"
-#include "Arduino.h"
 Pid::Pid(float _kP,float _kI,float _kD,int _minOut,int _maxOut)
 {
 kP = _kP ;

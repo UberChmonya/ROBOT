@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "motor.h"
 #include "PID.h"
+#include "SetPoint.h"
 class Robot
 {
     private:

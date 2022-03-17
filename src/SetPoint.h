@@ -1,9 +1,8 @@
 #pragma once
 class SetPoint
 {
-
     private:
-    int distanceAccelerator, maxOut, acceleration;
+    int distanceAccelerator, minOut, maxOut, acceleration;
 
     public:
     SetPoint(int distanceAccelerator, int minOut, int MaxOut);
