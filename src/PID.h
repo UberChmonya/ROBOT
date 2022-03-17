@@ -9,6 +9,7 @@ class Pid
 
     public:
 
+        Pid();
         Pid(float _kP,float _kI,float _kD,int _minOut,int _maxOut);
         int calculate(int input,float setpoint,float Dt);
         void reset();

@@ -1,13 +1,12 @@
 #pragma once
 #include <Arduino.h>
 #include "motor.h"
-#include "PID.h"
 #include "SetPoint.h"
-#include "PID.h"
+
 class Robot
 {
     private:
-        uint16_t robotDiametr, wheelDiametr;
+        
         int16_t currentAngle, targetAngle,
                 currentSpeed, targetSpeed;
 
@@ -16,15 +15,13 @@ class Robot
         float Kp, Ki, Kd;
 
     public:
+    uint16_t robotDiametr, wheelDiametr;
         Motor motorL, motorR;
-        Pid pidWheelL, pidWheelR;
-
+    
         Robot(uint16_t robotDiametr,uint16_t _wheelDiametr);
         void setMotor(Motor &_motorL, Motor &_motorR);
-        void setPid(Pid &_pidWheelL,Pid &pidWheelR);
 
-        void runSpeed(uint8_t, deltaL, deltaR);
-        void check(void);
+        void runSpeed(uint8_t speed,uint32_t deltaL,uint32_t deltaR);
         void stopMotors(void);
 
         void rotate(int16_t angle);  

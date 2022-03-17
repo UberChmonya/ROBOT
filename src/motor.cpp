@@ -2,9 +2,7 @@
 
 Motor::Motor(){} // dont use!!!!
 
-Motor::Motor(uint8_t _pinPWM, uint8_t _pinDirFoward,
-             uint8_t _pinDirBackward,
-             int _tickPerRotation)
+Motor::Motor(uint8_t _pinPWM, uint8_t _pinDirFoward, uint8_t _pinDirBackward, int _tickPerRotation)
 {
     pinPWM = _pinPWM;
     pinDirFoward = _pinDirFoward;
@@ -15,14 +13,19 @@ Motor::Motor(uint8_t _pinPWM, uint8_t _pinDirFoward,
     pinMode(pinDirBackward, OUTPUT);
 }
 
-void Motor::SetEncoder(Encoder &enc)
+void Motor::setEncoder(Encoder &_enc)
 {
-encoder = enc;
+encoder = _enc;
 }
 
-void Motor::setSpeed(uint8_t speed, uint8_t dir)
+void Motor::setPid(Pid &_pid)
 {
-  analogWrite(pinPWM, speed);
+  pid = _pid;
+}
+
+void Motor::setSpeed(uint8_t speed, uint8_t dir, uint32_t delta)
+{
+  analogWrite(pinPWM, pid.calculate(delta, speed, delta));
   if (dir == 0)
   {
     digitalWrite(pinDirBackward, 0);

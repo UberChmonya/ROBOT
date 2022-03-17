@@ -1,45 +1,42 @@
 #include "main.h"
 #include "tim.h"
 void setup() {
-  motorL.SetEncoder(encL);
-  motorR.SetEncoder(encR);
+  motorL.setEncoder(encL);
+  motorR.setEncoder(encR);
   robot.setMotor(motorL, motorR);
-  robot.setPid(pidWheelL, pidWheelR);
-  
-  Timer tickL = Timer();
-  Timer tickR = Timer();
+  motorL.setPid(pidWheelL);
+  motorR.setPid(pidWheelR);
   Serial.begin(115200);
 
 }
 
-static uint8_t state = 1; 
-// state 0: stop,
-// state 1: move, 
-// state 2: rotate 
-
+state robotState = stop;
 static uint8_t speed = 20;// mm sec
 static int16_t angle = 90;// gradus
+static uint16_t distanceTarget = 1000;// gradus
+static bool encStateL, encStateR = false;
 
 void loop() {
-  if(distanse >= 1000)
+
+  encStateL = encL.check();
+  encStateR = encR.check();
+
+  if(distanceTarget/robot.wheelDiametr/motorL.tickPerRotation * encL.count >= distanceTarget)
   {
-    state = 0;
-    robot.pidWheelL.reset();
-    robot.pidWheelR.reset();
+    robotState = stop;
+    motorL.pid.reset();
+    motorR.pid.reset();
   }
   else 
   {
-    state = 1;
-
+    robotState = move;
   }
 
-  if(encL.check() || encR.check())
+  if(encStateL || encStateR)
   {
-    if (state == 1)//move
+    if (robotState == move)
     {
       robot.runSpeed(speed, encL.delta, encR.delta);
     }
-
-
   }
 }
