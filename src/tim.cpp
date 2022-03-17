@@ -3,13 +3,20 @@ Timer::Timer()
 {
     newTime, oldTime = micros();
 }
-Timer::Time()
+
+void Timer::Time()
 {
     oldTime = newTime;
     newTime = micros();
 
 }
+
 int32_t Timer::Delta()
 {
     return newTime - oldTime;
+}
+
+void Timer::reset()
+{
+    newTime, oldTime = micros();
 }

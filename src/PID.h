@@ -3,7 +3,7 @@ class Pid
 {
     private:
 
-        float kP, kI, kD, err, d;
+        float kP, kI, kD, err, D;
         int minOut, maxOut;
         float integral = 0, prevErr = 0;
 

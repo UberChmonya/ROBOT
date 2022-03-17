@@ -9,4 +9,5 @@ class Timer
     Timer();
     int32_t Delta();
     void Time();
-}
+    void reset();
+};

@@ -4,7 +4,7 @@ void setup() {
   motorL.SetEncoder(encL);
   motorR.SetEncoder(encR);
   robot.setMotor(motorL, motorR);
-  robot.sedPid(pidWheelL, pidWheelR);
+  robot.setPid(pidWheelL, pidWheelR);
   
   Timer tickL = Timer();
   Timer tickR = Timer();
@@ -24,7 +24,8 @@ void loop() {
   if(distanse >= 1000)
   {
     state = 0;
-    robot.
+    robot.pidWheelL.reset();
+    robot.pidWheelR.reset();
   }
   else 
   {
@@ -32,7 +33,7 @@ void loop() {
 
   }
 
-  if(encL || encR)
+  if(encL.check() || encR.check())
   {
     if (state == 1)//move
     {

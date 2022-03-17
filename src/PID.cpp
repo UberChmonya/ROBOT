@@ -19,7 +19,7 @@ int Pid::calculate(int input,float setpoint,float Dt)
 
     D = (err - prevErr) / Dt;
     prevErr = err;
-    result = err * kP + integral + D * kD, minOut, maxOut;
+    result = err * kP + integral + D * kD;
     
     if (result > maxOut) return maxOut;
     else if (result < minOut) return minOut;

@@ -36,7 +36,7 @@ void setPid(Pid &_pidWheelL,Pid &pidWheelR)
     pidWheelL = _pidWheelL;
 }
 
-void Robot::runSpeed(unt8_t speed, deltaL, deltaR)
+void Robot::runSpeed(unt8_t speed, uint32_t deltaL, uint32_t deltaR)
 {
 
     vL =  PI * wheelDiametr / deltaL;

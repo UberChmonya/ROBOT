@@ -12,7 +12,7 @@ Encoder::Encoder(uint8_t _pin1, uint8_t _pin2)
   tim = Timer(); 
 }
 
-void Encoder::check()
+bool Encoder::check()
 {
   if ((isHigh(pin1)) & (trig == 0))
   {
