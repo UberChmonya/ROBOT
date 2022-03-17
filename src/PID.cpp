@@ -17,11 +17,16 @@ int Pid::calculate(int input,float setpoint,float Dt)
     else if (result < minOut) integral =  minOut;
     else integral  = result;
 
-    float D = (err - prevErr) / Dt;
+    D = (err - prevErr) / Dt;
     prevErr = err;
     result = err * kP + integral + D * kD, minOut, maxOut;
     
     if (result > maxOut) return maxOut;
     else if (result < minOut) return minOut;
     else return result;
+}
+
+void Pid::reset()
+{
+    integral = 0, prevErr = 0;
 }

@@ -6,6 +6,7 @@ SetPoint::SetPoint(int _distanceAccelerator, int _minOut, int _maxOut)
     maxOut = _maxOut;
     acceleration = ((maxOut - _minOut) / distanceAccelerator);
 }
+
 int SetPoint::GetSpeed(int distance,int distanceCurr)
 {
 
