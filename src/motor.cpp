@@ -23,9 +23,10 @@ void Motor::setPid(Pid &_pid)
   pid = _pid;
 }
 
-void Motor::setSpeed(uint8_t speed, uint8_t dir, uint32_t delta)
+void Motor:: setSpeed(uint8_t target, uint8_t speed,float delta, uint8_t dir)
 {
-  analogWrite(pinPWM, pid.calculate(delta, speed, delta));
+  
+  analogWrite(pinPWM, pid.calculate(speed, target, delta));
   if (dir == 0)
   {
     digitalWrite(pinDirBackward, 0);

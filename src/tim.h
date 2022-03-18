@@ -3,11 +3,11 @@
 class Timer
 {
     private:
+    uint32_t oldTime, newTime;
 
     public:
-    uint32_t oldTime, newTime;
+    float delta;
     Timer();
-    int32_t Delta();
     void Time();
     void reset();
 };

@@ -6,12 +6,13 @@ class Encoder{
     private:
     bool trig;
     int8_t pin1, pin2;
-    Timer tim;
-
+    
     public:
-    int32_t delta;
+    Timer timer;
     int count;
     Encoder (); // dont use!!!!!
     Encoder (uint8_t _pin1, uint8_t _pin2);
+
+    void setTimer(Timer &tim);
     bool check();
 };

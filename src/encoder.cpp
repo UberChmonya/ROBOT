@@ -9,7 +9,12 @@ Encoder::Encoder(uint8_t _pin1, uint8_t _pin2)
   count = 0;
   pinAsInput(pin1);
   pinAsInput(pin2);
-  tim = Timer(); 
+  
+}
+
+void Encoder::setTimer(Timer &_tim)
+{
+  timer = _tim;
 }
 
 bool Encoder::check()
@@ -17,8 +22,7 @@ bool Encoder::check()
   if ((isHigh(pin1)) & (trig == 0))
   {
     trig = 1;
-    tim.Time();
-    delta = tim.Delta();
+    timer.Time();
 
     if (isHigh(pin2))
     {

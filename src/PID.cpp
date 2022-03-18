@@ -1,4 +1,5 @@
 #include "PID.h"
+Pid::Pid(){}
 Pid::Pid(float _kP,float _kI,float _kD,int _minOut,int _maxOut)
 {
 kP = _kP ;
@@ -8,14 +9,6 @@ minOut= _minOut;
 maxOut= _maxOut;
 }
 
-Pid::Pid()
-{
-kP = 1 ;
-kI = 1 ;
-kD = 1 ;
-minOut= 0;
-maxOut= 255;
-}
 
 int Pid::calculate(int input,float setpoint,float Dt)
 {

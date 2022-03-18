@@ -1,17 +1,24 @@
 #include "main.h"
 #include "tim.h"
 void setup() {
+
+  encL.setTimer(timEcnL);
   motorL.setEncoder(encL);
-  motorR.setEncoder(encR);
-  robot.setMotor(motorL, motorR);
   motorL.setPid(pidWheelL);
+
+  encR.setTimer(timEncR);
+  motorR.setEncoder(encR);
   motorR.setPid(pidWheelR);
+
+  robot.setMotor(motorL, motorR);
+
   Serial.begin(115200);
+  Serial.println("L, R");
 
 }
 
 state robotState = stop;
-static uint8_t speed = 20;// mm sec
+static uint8_t speed = 100;// mm sec
 static int16_t angle = 90;// gradus
 static uint16_t distanceTarget = 1000;// gradus
 static bool encStateL, encStateR = false;
@@ -26,6 +33,7 @@ void loop() {
     robotState = stop;
     motorL.pid.reset();
     motorR.pid.reset();
+    robot.stopMotors();
   }
   else 
   {
@@ -34,9 +42,11 @@ void loop() {
 
   if(encStateL || encStateR)
   {
+
     if (robotState == move)
     {
-      robot.runSpeed(speed, encL.delta, encR.delta);
+
+      robot.runSpeed(speed, encL.timer.delta, encR.timer.delta);
     }
   }
 }

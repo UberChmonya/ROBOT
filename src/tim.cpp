@@ -1,22 +1,20 @@
 #include "tim.h"
 Timer::Timer()
 {
-    newTime, oldTime = micros();
+    newTime = micros();
+    oldTime = micros();
 }
 
 void Timer::Time()
 {
     oldTime = newTime;
     newTime = micros();
+    delta = (float)(newTime - oldTime) / 1000000.0;
 
-}
-
-int32_t Timer::Delta()
-{
-    return newTime - oldTime;
 }
 
 void Timer::reset()
 {
-    newTime, oldTime = micros();
+    newTime = micros();
+    oldTime = micros();
 }

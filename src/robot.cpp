@@ -24,13 +24,17 @@ void Robot::stopMotors(void)
     motorR.stop();
 }
 
-void Robot::runSpeed(uint8_t speed, uint32_t deltaL, uint32_t deltaR)
+void Robot::runSpeed(uint8_t speed,float deltaL,float deltaR)
 {
 
-    float vL =  PI * wheelDiametr / deltaL;
-    float vR =  PI * wheelDiametr / deltaR;
-    motorL.setSpeed(speed, 0, vL);
-    motorR.setSpeed(speed, 0, vR);
+    float vL =  PI * wheelDiametr / motorL.tickPerRotation / deltaL;
+    float vR =  PI * wheelDiametr / motorR.tickPerRotation / deltaR;
+
+    Serial.print(vL*10000, 6);
+    Serial.print(',');
+    Serial.println(vR*10000, 6);
+    motorL.setSpeed(speed, vL, deltaL, 0);
+    motorR.setSpeed(speed, vR, deltaR, 0);
 
 }
 

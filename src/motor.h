@@ -22,6 +22,6 @@ class Motor{
     void setPid(Pid &pid);
     void setEncoder(Encoder &enc);
 
-    void setSpeed(uint8_t speed, uint8_t dir, uint32_t delta);
+    void setSpeed(uint8_t target, uint8_t speed,float delta, uint8_t dir);
     void stop(void);
 };
